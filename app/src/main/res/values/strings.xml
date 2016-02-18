@@ -8,4 +8,6 @@
     <string name="add_string">Add</string>
     <string name="find_string">Find</string>
     <string name="delete_string">Delete</string>
+    <string name="not_found_string">No Match Found</string>
+    <string name="deleted_string">Record Deleted</string>
 </resources>
