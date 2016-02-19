@@ -10,4 +10,8 @@
     <string name="delete_string">Delete</string>
     <string name="not_found_string">No Match Found</string>
     <string name="deleted_string">Record Deleted</string>
+    <string name="delete_all_string">Delete All</string>
+    <string name="update_string">update</string>
+    <string name="all_deleted_string">All Rows Deleted</string>
+    <string name="product_updated_string">Product Updated</string>
 </resources>
