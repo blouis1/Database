@@ -14,4 +14,6 @@
     <string name="update_string">update</string>
     <string name="all_deleted_string">All Rows Deleted</string>
     <string name="product_updated_string">Product Updated</string>
+    <string name="record_updated_string">Record Updated</string>
+    <string name="record_added_string">Record Added</string>
 </resources>

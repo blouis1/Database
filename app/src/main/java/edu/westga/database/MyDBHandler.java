@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by Betsy on 2/17/2016.
@@ -103,5 +105,54 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.delete(TABLE_PRODUCTS, null, null);
 
         db.close();
+    }
+
+    public int updateProduct(String productname, int quantity) {
+
+        int rowsAffected = 0;
+
+        String query = "Select * FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_PRODUCTNAME + " =  \"" + productname + "\"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        Product product = new Product();
+
+        if (cursor.moveToFirst()) {
+            product.setID(Integer.parseInt(cursor.getString(0)));
+
+            ContentValues valuesToInsert = new ContentValues();
+            valuesToInsert.put(COLUMN_PRODUCTNAME, productname);
+            valuesToInsert.put(COLUMN_QUANTITY, quantity);
+
+            String where = COLUMN_ID + " = ?";
+            String[] whereArgs = new String[]{ String.valueOf(product.getID()) };
+
+            db.update(TABLE_PRODUCTS, valuesToInsert, where, whereArgs);
+            rowsAffected = product.getID();
+            cursor.close();
+
+        }
+        db.close();
+        return rowsAffected;
+
+
+        /*if (cursor.moveToFirst()) {
+            ContentValues valuesToInsert = new ContentValues();
+            valuesToInsert.put(COLUMN_PRODUCTNAME, productname);
+            valuesToInsert.put(COLUMN_QUANTITY, quantity);
+
+            String where = COLUMN_ID + " = ?";
+            String[] whereArgs = new String[]{ String.valueOf(productid) };
+
+            rowsAffected = db.update(TABLE_PRODUCTS, valuesToInsert, where, whereArgs);
+
+            cursor.close();
+        } else {
+            rowsAffected = 0;
+        }*/
+
+
     }
 }
